@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Order.Api.Database": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ORDERAPP_ENVIRONMENT": "DEVELOPMENT"
+      }
+    }
+  }
+}

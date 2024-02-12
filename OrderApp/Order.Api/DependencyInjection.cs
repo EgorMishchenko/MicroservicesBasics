@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using MediatR;
-using Order.Api.Domain.Entities;
 using Order.Api.Models.v1;
 using Order.Api.Service.Command;
 using Order.Api.Validators.v1;
