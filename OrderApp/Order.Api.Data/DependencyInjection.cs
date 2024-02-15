@@ -7,7 +7,6 @@ namespace Order.Api.Data
   {
     public static IServiceCollection AddPersistence(this IServiceCollection services)
     {
-      services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
       services.AddScoped<IOrderRepository, OrderRepository>();
 
       return services;

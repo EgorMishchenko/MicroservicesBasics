@@ -1,9 +1,10 @@
 ﻿using FluentValidation;
 using MediatR;
-using Order.Api.Models.v1;
-using Order.Api.Service.v1.Command;
 using Order.Api.Validators.v1;
 using System.Reflection;
+using Order.Api.Dtos.v1;
+using Order.Api.Service.v1.Commands;
+using Order.Api.Contracts;
 
 namespace Order.Api
 {
@@ -23,8 +24,7 @@ namespace Order.Api
 
     private static IServiceCollection AddInfrastructure(this IServiceCollection services)
     {
-      services.AddValidatorsFromAssemblyContaining<OrderModelValidator>();
-      services.AddAutoMapper(typeof(Program));
+      services.AddValidatorsFromAssemblyContaining<CreateOrderRequestValidator>();
       services.AddMediatR(Assembly.GetExecutingAssembly(), typeof(CreateOrderCommand).Assembly);
       
       return services;
@@ -32,7 +32,7 @@ namespace Order.Api
 
     private static IServiceCollection AddValidation(this IServiceCollection services)
     {
-      services.AddTransient<IValidator<OrderModel>, OrderModelValidator>();
+      services.AddTransient<IValidator<CreateOrderRequest>, CreateOrderRequestValidator>();
       return services;
     }
   }

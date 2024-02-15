@@ -2,7 +2,6 @@
 using Order.Api.Data.Database;
 using Order.Api.Domain.Entities;
 using System.Data;
-
 namespace Order.Api.Data.Repositories.v1
 {
   public sealed class OrderRepository : IOrderRepository
@@ -17,6 +16,7 @@ namespace Order.Api.Data.Repositories.v1
       try
       {
         var query = "SELECT * FROM Order";
+
         using (var connection = _dbContext.CreateConnection())
         {
           return await connection.QueryAsync<OrderEntity>(query);

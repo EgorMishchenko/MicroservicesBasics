@@ -11,12 +11,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="MediatR" Version="12.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Order.Api.Data\Order.Api.Data.csproj" />
-    <ProjectReference Include="..\Order.Api.Domain\Order.Api.Domain.csproj" />
+    <ProjectReference Include="..\Order.Api.Dtos\Order.Api.Dtos.csproj" />
   </ItemGroup>
 
 </Project>

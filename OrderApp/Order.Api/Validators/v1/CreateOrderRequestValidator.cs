@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
-using Order.Api.Models.v1;
+using Order.Api.Contracts;
 
 namespace Order.Api.Validators.v1
 {
-  public class OrderModelValidator : AbstractValidator<OrderModel>
+  public class CreateOrderRequestValidator : AbstractValidator<CreateOrderRequest>
   {
-    public OrderModelValidator()
+    public CreateOrderRequestValidator()
     {
       RuleFor(x => x.CustomerFullName)
         .NotNull()

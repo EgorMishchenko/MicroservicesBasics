@@ -2,8 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Order.Api.Contracts;
-using Order.Api.Domain.Entities;
-using Order.Api.Models.v1;
+using Order.Api.Dtos.v1;
 using Order.Api.Service.v1.Commands;
 
 namespace Order.Api.Controllers.v1
@@ -34,17 +33,15 @@ namespace Order.Api.Controllers.v1
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     [HttpPost]
-    public async Task<ActionResult<OrderEntity>> CreateOrder(CreateOrderRequest request)
+    public async Task<ActionResult> CreateOrderAsync(CreateOrderRequest request)
     {
       try
       {
-        var orderModel = _mapper.Map<OrderModel>(request);
+        var orderModel = _mapper.Map<OrderDto>(request);
         var command = new CreateOrderCommand(orderModel);
-        var result = await _mediator.Send(command);
+        await _mediator.Send(command);
 
-        var response = _mapper.Map<CreateOrderResponse>(result);
-
-        return result;
+        return Ok();
       }
       catch (Exception ex)
       {

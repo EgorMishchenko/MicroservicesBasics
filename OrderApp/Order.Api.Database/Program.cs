@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Order.Api.Data.Database;
 using Order.Api.Database.Configurations;
 using Order.Api.Database.Jobs;
 
