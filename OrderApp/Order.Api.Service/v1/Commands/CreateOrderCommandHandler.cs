@@ -2,9 +2,9 @@
 using Order.Api.Data.Repositories.v1;
 using Order.Api.Domain.Entities;
 
-namespace Order.Api.Service.Command
+namespace Order.Api.Service.v1.Commands
 {
-  public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, OrderEntity>
+  public sealed class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, OrderEntity>
   {
     private readonly IOrderRepository _orderRepository;
 

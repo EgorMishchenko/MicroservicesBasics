@@ -1,13 +1,13 @@
 ﻿using FluentValidation;
 using MediatR;
 using Order.Api.Models.v1;
-using Order.Api.Service.Command;
+using Order.Api.Service.v1.Command;
 using Order.Api.Validators.v1;
 using System.Reflection;
 
 namespace Order.Api
 {
-  public static class DependencyInjection
+    public static class DependencyInjection
   {
     public static IServiceCollection AddApiDependencies(this IServiceCollection services)
     {

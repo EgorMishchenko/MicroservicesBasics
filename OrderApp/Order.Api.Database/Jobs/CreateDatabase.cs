@@ -1,12 +1,13 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Options;
+using Order.Api.Data.Database;
 using Order.Api.Database.Configurations;
 
 namespace Order.Api.Database.Jobs
 {
   internal sealed class CreateDatabase
   {
-      private readonly DapperContext _context;
+    private readonly DapperContext _context;
 
     public CreateDatabase(DapperContext context)
     {
@@ -22,11 +23,11 @@ namespace Order.Api.Database.Jobs
 
       using (var connection = _context.CreateMasterConnection())
       {
-          var records = connection.Query(query, parameters);
-          if (!records.Any())
-          {
-              connection.Execute($"CREATE DATABASE {dbName}");
-          }
+        var records = connection.Query(query, parameters);
+        if (!records.Any())
+        {
+            connection.Execute($"CREATE DATABASE {dbName}");
+        }
       }
     }
   }
