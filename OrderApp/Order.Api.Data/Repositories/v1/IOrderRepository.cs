@@ -4,12 +4,12 @@ namespace Order.Api.Data.Repositories.v1
 {
   public interface IOrderRepository 
   {
-    Task<IEnumerable<OrderEntity>> GetAllAsync();
-    Task<IEnumerable<OrderEntity>> GetPaidOrdersAsync(CancellationToken cancellationToken);
-    Task<OrderEntity> GetOrderByIdAsync(Guid orderId, CancellationToken cancellationToken);
-    Task<IEnumerable<OrderEntity>> GetOrderByCustomerGuidAsync(Guid customerId, CancellationToken cancellationToken);
-    Task AddAsync(OrderEntity entity);
-    Task UpdateAsync(OrderEntity entity);
-    Task UpdateRangeAsync(IEnumerable<OrderEntity> entities);
+    Task<IEnumerable<Domain.Entities.Order>> GetAllAsync();
+    Task<IEnumerable<Domain.Entities.Order>> GetPaidOrdersAsync(CancellationToken cancellationToken);
+    Task<Domain.Entities.Order> GetOrderByIdAsync(Guid orderId, CancellationToken cancellationToken);
+    Task<IEnumerable<Domain.Entities.Order>> GetOrderByCustomerGuidAsync(Guid customerId, CancellationToken cancellationToken);
+    Task AddAsync(Domain.Entities.Order entity);
+    Task UpdateAsync(Domain.Entities.Order entity);
+    Task UpdateRangeAsync(IEnumerable<Domain.Entities.Order> entities);
   }
 }

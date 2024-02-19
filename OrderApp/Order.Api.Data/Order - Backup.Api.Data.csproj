@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Order.Api.Domain\Order.Api.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Configurations\" />
+  </ItemGroup>
+
 </Project>

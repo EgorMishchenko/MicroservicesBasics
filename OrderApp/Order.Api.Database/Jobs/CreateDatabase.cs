@@ -14,7 +14,7 @@ namespace Order.Api.Database.Jobs
         _context = context;
     }
 
-    public void Run(IOptions<DatabaseSettings> settings)
+    public void Run(IOptions<DatabaseOptions> settings)
     {
       var dbName = settings.Value.DatabaseName;
       var query = "SELECT * FROM sys.databases WHERE name = @name";
@@ -23,8 +23,8 @@ namespace Order.Api.Database.Jobs
 
       using (var connection = _context.CreateMasterConnection())
       {
-        var records = connection.Query(query, parameters);
-        if (!records.Any())
+        var existingDb = connection.Query(query, parameters);
+        if (!existingDb.Any())
         {
             connection.Execute($"CREATE DATABASE {dbName}");
         }

@@ -3,7 +3,7 @@
     "Order.Api.Database": {
       "commandName": "Project",
       "environmentVariables": {
-        "ORDERAPP_ENVIRONMENT": "DEVELOPMENT"
+        "DOTNET_ENVIRONMENT": "Development"
       }
     }
   }

@@ -18,7 +18,7 @@ namespace Order.Api.Service.v1.Commands
 
     public async Task Handle(CreateOrderCommand request, CancellationToken cancellationToken)
     {
-      var order = _mapper.Map<OrderEntity>(request.Order);
+      var order = _mapper.Map<Domain.Entities.Order>(request.Order);
       await _orderRepository.AddAsync(order);
     }
   }

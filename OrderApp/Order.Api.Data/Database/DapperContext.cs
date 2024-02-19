@@ -1,19 +1,21 @@
 ﻿using System.Data;
 using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using Order.Api.Database.Configurations;
 
 namespace Order.Api.Data.Database
 {
   public class DapperContext 
   {
-    private readonly IConfiguration _configuration;
-    public DapperContext(IConfiguration configuration)
+    private readonly IOptions<DatabaseOptions> _settings;
+    public DapperContext(IOptions<DatabaseOptions> settings)
     {
-      _configuration = configuration;
+      _settings = settings;
     }
+
     public IDbConnection CreateConnection()
-      => new SqlConnection(_configuration.GetConnectionString("SqlConnection"));
+      => new SqlConnection(_settings.Value.ConnectionStrings.SqlConnection);
     public IDbConnection CreateMasterConnection()
-      => new SqlConnection(_configuration.GetConnectionString("MasterConnection"));
+      => new SqlConnection(_settings.Value.ConnectionStrings.MasterConnection);
   }
 }

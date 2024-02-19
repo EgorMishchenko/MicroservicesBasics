@@ -8,11 +8,14 @@ using Order.Api.Database.Jobs;
 
 namespace Order.Api.Database
 {
-  public static class Program
+  public class Program
   {
     public static void Main(string[] args)
     {
-      CreateHostBuilder(args).Build().Run();
+      CreateHostBuilder(args)
+        .Build()
+        .MigrateDatabase()
+        .Run();
     }
 
     public static IHostBuilder CreateHostBuilder(string[] args)
@@ -22,18 +25,20 @@ namespace Order.Api.Database
         {
           var globalConnStr = 
             hostContext.Configuration.GetSection("Order.Api.Database:ConnectionStrings")["MasterConnection"];
-          services.Configure<DatabaseSettings>(options => hostContext.Configuration.GetSection("Order.Api.Database").Bind(options));
 
-          services.AddFluentMigratorCore()
+          services.Configure<DatabaseOptions>(options => hostContext.Configuration.GetSection("Order.Api.Database")
+            .Bind(options));
+
+          services
+            .AddLogging(lb => lb.AddFluentMigratorConsole())
+            .AddFluentMigratorCore()
             .ConfigureRunner(rb => rb
               .AddSqlServer()
               .WithGlobalConnectionString(globalConnStr)
-              .ScanIn(typeof(Program).Assembly).For.Migrations())
-            .AddLogging(lb => lb.AddFluentMigratorConsole());
-
+              .ScanIn(typeof(Program).Assembly).For.Migrations());
+            
           services.AddSingleton<DapperContext>();
           services.AddSingleton<CreateDatabase>();
-          services.AddHostedService<Worker>();
         });
     }
   }
