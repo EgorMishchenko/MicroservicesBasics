@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Order.Api.Data.Database;
 using Order.Api.Database.Configurations;
 using Order.Api.Database.Jobs;
+using System.Reflection;
 
 namespace Order.Api.Database
 {
@@ -35,7 +36,7 @@ namespace Order.Api.Database
             .ConfigureRunner(rb => rb
               .AddSqlServer()
               .WithGlobalConnectionString(globalConnStr)
-              .ScanIn(typeof(Program).Assembly).For.Migrations());
+              .ScanIn(Assembly.GetExecutingAssembly()).For.Migrations());
             
           services.AddSingleton<DapperContext>();
           services.AddSingleton<CreateDatabase>();

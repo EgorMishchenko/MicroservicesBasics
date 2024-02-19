@@ -3,7 +3,7 @@
 namespace Order.Api.Database.Migrations
 {
   [Migration(2024_02_16_0001)]
-  internal sealed class CreateInitialTables : Migration
+  public class CreateInitialTables : Migration
   {
     public override void Up()
     {
