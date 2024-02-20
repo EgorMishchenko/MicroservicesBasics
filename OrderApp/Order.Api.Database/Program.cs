@@ -25,7 +25,7 @@ namespace Order.Api.Database
         .ConfigureServices((hostContext, services) =>
         {
           var globalConnStr = 
-            hostContext.Configuration.GetSection("Order.Api.Database:ConnectionStrings")["MasterConnection"];
+            hostContext.Configuration.GetSection("Order.Api.Database:ConnectionStrings")["SqlConnection"];
 
           services.Configure<DatabaseOptions>(options => hostContext.Configuration.GetSection("Order.Api.Database")
             .Bind(options));
