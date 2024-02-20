@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="MediatR" Version="12.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Customer.Api.Data\Customer.Api.Data.csproj" />
+    <ProjectReference Include="..\Customer.Api.Dtos\Customer.Api.Dtos.csproj" />
   </ItemGroup>
 
 </Project>

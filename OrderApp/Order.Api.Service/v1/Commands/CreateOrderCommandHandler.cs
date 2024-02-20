@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
 using Order.Api.Data.Repositories.v1;
-using Order.Api.Domain.Entities;
 
 namespace Order.Api.Service.v1.Commands
 {

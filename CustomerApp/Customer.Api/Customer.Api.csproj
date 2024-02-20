@@ -12,4 +12,9 @@
     <PackageReference Include="MediatR" Version="12.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Customer.Api.Dtos\Customer.Api.Dtos.csproj" />
+    <ProjectReference Include="..\Customer.Api.Service\Customer.Api.Service.csproj" />
+  </ItemGroup>
+
 </Project>

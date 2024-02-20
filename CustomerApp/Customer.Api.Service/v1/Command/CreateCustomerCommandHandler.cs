@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Customer.Api.Service.Command
+namespace Customer.Api.Service.v1.Command
 {
     public sealed class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, Customer>
     {

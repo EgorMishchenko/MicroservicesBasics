@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Customer.Api.Contracts;
+using Customer.Api.Service.v1.Query;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,11 +29,13 @@ namespace Customer.Api.Controllers.v1
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Customer>>> GetCustomersAsync()
+    public async Task<ActionResult<GetCustomersResponse>> GetCustomersAsync()
     {
       try
       {
-        return await _mediator.Send(new GetCustomersQuery());
+        var query = new GetCustomersQuery();
+        var result = await _mediator.Send(query);
+        return _mapper.Map<GetCustomersResponse>(result);
       }
       catch (Exception ex)
       {

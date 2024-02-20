@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customer.Api", "Customer.Api\Customer.Api.csproj", "{B357235D-C095-477A-BE4B-FEAA9ED4351F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Customer.Api", "Customer.Api\Customer.Api.csproj", "{B357235D-C095-477A-BE4B-FEAA9ED4351F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customer.Api.Messaging.Send", "Customer.Api.Messaging.Send\Customer.Api.Messaging.Send.csproj", "{7B6873AB-C63B-4AF3-BD4E-2DD41D7EED9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Customer.Api.Messaging.Send", "Customer.Api.Messaging.Send\Customer.Api.Messaging.Send.csproj", "{7B6873AB-C63B-4AF3-BD4E-2DD41D7EED9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customer.Api.Domain", "Customer.Api.Domain\Customer.Api.Domain.csproj", "{0413253B-815A-45D2-BD72-944455113BD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Customer.Api.Domain", "Customer.Api.Domain\Customer.Api.Domain.csproj", "{0413253B-815A-45D2-BD72-944455113BD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customer.Api.Service", "Customer.Api.Service\Customer.Api.Service.csproj", "{B6C70F06-223A-4F79-A5F7-E81EE2B47B13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Customer.Api.Service", "Customer.Api.Service\Customer.Api.Service.csproj", "{B6C70F06-223A-4F79-A5F7-E81EE2B47B13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customer.Api.Data", "Customer.Api.Data\Customer.Api.Data.csproj", "{87EC285A-3A98-4676-BCAE-F0CC97D68DD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Customer.Api.Data", "Customer.Api.Data\Customer.Api.Data.csproj", "{87EC285A-3A98-4676-BCAE-F0CC97D68DD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customer.Api.Dtos", "Customer.Api.Dtos\Customer.Api.Dtos.csproj", "{8DE14562-91D2-47F4-9A79-357DF38B5FD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{87EC285A-3A98-4676-BCAE-F0CC97D68DD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87EC285A-3A98-4676-BCAE-F0CC97D68DD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87EC285A-3A98-4676-BCAE-F0CC97D68DD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DE14562-91D2-47F4-9A79-357DF38B5FD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DE14562-91D2-47F4-9A79-357DF38B5FD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DE14562-91D2-47F4-9A79-357DF38B5FD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DE14562-91D2-47F4-9A79-357DF38B5FD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
