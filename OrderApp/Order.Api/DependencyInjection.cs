@@ -1,14 +1,13 @@
-﻿using FluentValidation;
+﻿using System.Reflection;
+using FluentValidation;
 using MediatR;
 using Order.Api.Validators.v1;
-using System.Reflection;
-using Order.Api.Dtos.v1;
 using Order.Api.Service.v1.Commands;
 using Order.Api.Contracts;
 
 namespace Order.Api
 {
-    public static class DependencyInjection
+  public static class DependencyInjection
   {
     public static IServiceCollection AddApiDependencies(this IServiceCollection services)
     {
@@ -19,6 +18,7 @@ namespace Order.Api
 
       services.AddInfrastructure();
       services.AddValidation();
+
       return services;
     }
 

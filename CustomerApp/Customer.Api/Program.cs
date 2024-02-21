@@ -1,3 +1,5 @@
+using Customer.Api.Data;
+
 namespace Customer.Api
 {
   public class Program
@@ -5,23 +7,38 @@ namespace Customer.Api
     public static void Main(string[] args)
     {
       var builder = WebApplication.CreateBuilder(args);
-
-      // Add services to the container.
-
-      builder.Services.AddControllers();
+      {
+        builder.Services
+          .AddApiDependencies()
+          .AddPersistence()
+          .AddInfrastructure();
+      }
 
       var app = builder.Build();
+      {
+        if (app.Environment.IsDevelopment())
+        {
+          app.UseDeveloperExceptionPage();
+        }
+        else
+        {
+          app.UseHsts();
+        }
 
-      // Configure the HTTP request pipeline.
+        app.UseHttpsRedirection();
+        app.UseAuthorization();
 
-      app.UseHttpsRedirection();
+        app.UseSwagger();
+        app.UseSwaggerUI(c =>
+        {
+          c.SwaggerEndpoint("/swagger/v1/swagger.json", "Customer API V1");
+          c.RoutePrefix = string.Empty;
+        });
 
-      app.UseAuthorization();
+        app.MapControllers();
 
-
-      app.MapControllers();
-
-      app.Run();
+        app.Run();
+      }
     }
   }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Customer.Api.Contracts;
+using Customer.Api.Dtos.v1;
 using Customer.Api.Service.v1.Query;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -34,7 +35,7 @@ namespace Customer.Api.Controllers.v1
       try
       {
         var query = new GetCustomersQuery();
-        var result = await _mediator.Send(query);
+        IEnumerable<CustomerDto> result = await _mediator.Send(query);
         return _mapper.Map<GetCustomersResponse>(result);
       }
       catch (Exception ex)

@@ -19,7 +19,7 @@ namespace Customer.Api.Service.v1.Query
     {
       var customersFromDb = _customerRepository.GetAll();
       var mappedCustomers = _mapper.Map<IEnumerable<CustomerDto>>(customersFromDb);
-      return mappedCustomers;
+      return await Task.FromResult(mappedCustomers);
     }
   }
 }

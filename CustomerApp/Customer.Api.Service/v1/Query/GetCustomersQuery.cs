@@ -3,7 +3,5 @@ using MediatR;
 
 namespace Customer.Api.Service.v1.Query
 {
-  public class GetCustomersQuery : IRequest<IEnumerable<CustomerDto>>
-  {
-  }
+  public record GetCustomersQuery : IRequest<IEnumerable<CustomerDto>>;
 }
