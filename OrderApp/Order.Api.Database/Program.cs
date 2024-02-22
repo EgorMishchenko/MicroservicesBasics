@@ -1,11 +1,11 @@
-﻿using FluentMigrator.Runner;
+﻿using System.Reflection;
+using FluentMigrator.Runner;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Order.Api.Data.Database;
 using Order.Api.Database.Configurations;
 using Order.Api.Database.Jobs;
-using System.Reflection;
 
 namespace Order.Api.Database
 {
@@ -19,7 +19,7 @@ namespace Order.Api.Database
         .Run();
     }
 
-    public static IHostBuilder CreateHostBuilder(string[] args)
+    private static IHostBuilder CreateHostBuilder(string[] args)
     {
       return Host.CreateDefaultBuilder(args)
         .ConfigureServices((hostContext, services) =>

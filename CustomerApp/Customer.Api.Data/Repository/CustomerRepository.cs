@@ -9,6 +9,7 @@ namespace Customer.Api.Data.Repository
     public CustomerRepository(CustomerContext customerContext) : base(customerContext)
     {
     }
+
     public async Task<CustomerTable> GetCustomerByIdAsync(Guid id, CancellationToken cancellationToken)
     {
       return await CustomerContext.Customer.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);

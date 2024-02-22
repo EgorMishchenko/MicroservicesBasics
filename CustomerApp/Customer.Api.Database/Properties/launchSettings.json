@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Customer.Api.Database": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

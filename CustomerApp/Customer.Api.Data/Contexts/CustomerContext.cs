@@ -16,6 +16,16 @@ namespace Customer.Api.Data.Contexts
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+      modelBuilder.Entity<CustomerTable>(entity =>
+      {
+        entity.Property(e => e.Id).IsRequired();
+
+        entity.Property(e => e.Birthday).HasColumnType("date");
+
+        entity.Property(e => e.FirstName).IsRequired();
+
+        entity.Property(e => e.LastName).IsRequired();
+      });
     }
   }
 }

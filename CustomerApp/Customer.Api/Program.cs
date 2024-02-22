@@ -1,4 +1,5 @@
 using Customer.Api.Data;
+using Customer.Api.Service;
 
 namespace Customer.Api
 {
@@ -9,9 +10,9 @@ namespace Customer.Api
       var builder = WebApplication.CreateBuilder(args);
       {
         builder.Services
-          .AddApiDependencies()
-          .AddPersistence()
-          .AddInfrastructure();
+          .AddApiDependencies(builder.Configuration)
+          .AddPersistence(builder.Configuration)
+          .AddServiceDependencies();
       }
 
       var app = builder.Build();
