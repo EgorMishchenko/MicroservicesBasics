@@ -3,5 +3,5 @@ using MediatR;
 
 namespace Customer.Api.Service.v1.Command
 {
-  public record CreateCustomerCommand(CustomerDto Customer) : IRequest<CustomerDto>;
+  public record UpdateCustomerCommand(CustomerDto Customer) : IRequest<CustomerDto>;
 }

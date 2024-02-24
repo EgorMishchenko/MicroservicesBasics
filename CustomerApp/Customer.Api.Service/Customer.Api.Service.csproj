@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Customer.Api.Data\Customer.Api.Data.csproj" />
     <ProjectReference Include="..\Customer.Api.Dtos\Customer.Api.Dtos.csproj" />
+    <ProjectReference Include="..\Customer.Api.Messaging.Send\Customer.Api.Messaging.Send.csproj" />
   </ItemGroup>
 
 </Project>

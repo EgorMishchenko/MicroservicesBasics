@@ -13,7 +13,7 @@ namespace Order.Api.Database.Migrations
           new Guid("67fbac34-1ee1-4697-b916-1748861dd275"),
           0,
           new Guid("22874488-1c32-412f-b42b-00bc92c31c9c"),
-          "John Dawn"
+          "John Doe"
         ));
 
       Insert.IntoTable("Orders")
