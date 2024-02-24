@@ -36,7 +36,8 @@ namespace Customer.Api.Controllers.v1
       try
       {
         var customers = await _mediator.Send(new GetCustomersQuery());
-        return _mapper.Map<GetCustomersResponse>(customers);
+        var customerContracts = _mapper.Map<List<Contracts.Customer>>(customers);
+        return new GetCustomersResponse(customerContracts);
       }
       catch (Exception ex)
       {
