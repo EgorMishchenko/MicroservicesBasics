@@ -17,8 +17,8 @@ namespace Customer.Api.Service.v1.Query
 
     public async Task<IEnumerable<CustomerDto>> Handle(GetCustomersQuery request, CancellationToken cancellationToken)
     {
-      var customersFromDb = _customerRepository.GetAll();
-      var mappedCustomers = _mapper.Map<IEnumerable<CustomerDto>>(customersFromDb);
+      var customersFromDb = _customerRepository.GetAll().ToList();
+      var mappedCustomers = _mapper.Map<List<CustomerDto>>(customersFromDb);
       return await Task.FromResult(mappedCustomers);
     }
   }

@@ -3,8 +3,8 @@ using Customer.Api.Contracts;
 using Customer.Api.Dtos.v1;
 using Customer.Api.Service.v1.Command;
 using Customer.Api.Service.v1.Query;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using MediatR;
 
 namespace Customer.Api.Controllers.v1
 {
@@ -35,9 +35,8 @@ namespace Customer.Api.Controllers.v1
     {
       try
       {
-        var query = new GetCustomersQuery();
-        IEnumerable<CustomerDto> result = await _mediator.Send(query);
-        return _mapper.Map<GetCustomersResponse>(result);
+        var customers = await _mediator.Send(new GetCustomersQuery());
+        return _mapper.Map<GetCustomersResponse>(customers);
       }
       catch (Exception ex)
       {

@@ -1,4 +1,5 @@
 using Customer.Api.Data;
+using Customer.Api.Messaging.Send;
 using Customer.Api.Service;
 
 namespace Customer.Api
@@ -12,6 +13,7 @@ namespace Customer.Api
         builder.Services
           .AddApiDependencies(builder.Configuration)
           .AddPersistence(builder.Configuration)
+          .AddMessagingDependencies()
           .AddServiceDependencies();
       }
 
