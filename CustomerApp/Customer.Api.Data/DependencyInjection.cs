@@ -1,7 +1,7 @@
 ﻿using Customer.Api.Data.Contexts;
 using Customer.Api.Data.Repository;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 
 namespace Customer.Api.Data

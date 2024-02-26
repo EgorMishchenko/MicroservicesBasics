@@ -13,7 +13,7 @@ namespace Customer.Api
         builder.Services
           .AddApiDependencies(builder.Configuration)
           .AddPersistence(builder.Configuration)
-          .AddMessagingDependencies()
+          .AddMessagingDependencies(builder.Configuration)
           .AddServiceDependencies();
       }
 

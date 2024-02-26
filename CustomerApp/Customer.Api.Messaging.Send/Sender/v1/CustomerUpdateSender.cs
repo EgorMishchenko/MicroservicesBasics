@@ -33,7 +33,6 @@ namespace Customer.Api.Messaging.Send.Sender.v1
       }
     }
 
-
     private void CreateConnection()
     {
       try
@@ -41,7 +40,7 @@ namespace Customer.Api.Messaging.Send.Sender.v1
         var factory = new ConnectionFactory
         {
           HostName = _rabbitConfig.Hostname,
-          UserName = _rabbitConfig.UserName,
+          UserName = _rabbitConfig.Username,
           Password = _rabbitConfig.Password,
         };
         _connection = factory.CreateConnection();

@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using Customer.Api.Data.Configuration;
-using Customer.Api.Service.v1.Query;
 
 namespace Customer.Api
 {

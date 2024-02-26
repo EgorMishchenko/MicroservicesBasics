@@ -1,5 +1,4 @@
 using AutoMapper;
-using Customer.Api.Contracts;
 using Customer.Api.Data.Models;
 using Customer.Api.Dtos.v1;
 using Customer.Api.Mappings;
