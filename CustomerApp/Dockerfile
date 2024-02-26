@@ -10,6 +10,7 @@ COPY ["Customer.Api.Messaging.Send/Customer.Api.Messaging.Send.csproj", "Custome
 COPY ["Customer.Api.Service/Customer.Api.Service.csproj", "Customer.Api.Service/"]
 
 RUN dotnet restore "Customer.Api/Customer.Api.csproj"
+COPY . .
 RUN dotnet publish "Customer.Api/Customer.Api.csproj" --no-restore -c Release -o /app/publish
 
 #serve stage
