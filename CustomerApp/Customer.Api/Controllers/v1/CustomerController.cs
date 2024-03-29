@@ -3,6 +3,7 @@ using Customer.Api.Contracts;
 using Customer.Api.Dtos.v1;
 using Customer.Api.Service.v1.Command;
 using Customer.Api.Service.v1.Query;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
 
@@ -15,11 +16,13 @@ namespace Customer.Api.Controllers.v1
   {
     private readonly IMapper _mapper;
     private readonly IMediator _mediator;
+    private readonly IValidator<CreateCustomerRequest> _validator;
 
-    public CustomerController(IMapper mapper, IMediator mediator)
+    public CustomerController(IMapper mapper, IMediator mediator, IValidator<CreateCustomerRequest> validator)
     {
       _mapper = mapper;
       _mediator = mediator;
+      _validator = validator;
     }
 
     /// <summary>
@@ -61,6 +64,8 @@ namespace Customer.Api.Controllers.v1
     {
       try
       {
+        await _validator.ValidateAsync(request);
+
         var customerDto = _mapper.Map<CustomerDto>(request);
         var createdCustomer = await _mediator.Send(new CreateCustomerCommand(customerDto));
 

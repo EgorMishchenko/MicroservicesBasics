@@ -1,9 +1,9 @@
+#api
 #build stage
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /src
 COPY ["Customer.Api/Customer.Api.csproj", "Customer.Api/"]
 COPY ["Customer.Api.Data/Customer.Api.Data.csproj", "Customer.Api.Data/"]
-COPY ["Customer.Api.Database/Customer.Api.Database.csproj", "Customer.Api.Database/"]
 COPY ["Customer.Api.Domain/Customer.Api.Domain.csproj", "Customer.Api.Domain/"]
 COPY ["Customer.Api.Dtos/Customer.Api.Dtos.csproj", "Customer.Api.Dtos/"]
 COPY ["Customer.Api.Messaging.Send/Customer.Api.Messaging.Send.csproj", "Customer.Api.Messaging.Send/"]
@@ -18,7 +18,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 COPY --from=build-env /app/publish .
 
-EXPOSE 80
-EXPOSE 443
+EXPOSE 5000
+EXPOSE 5001
 
 ENTRYPOINT ["dotnet", "Customer.Api.dll"]

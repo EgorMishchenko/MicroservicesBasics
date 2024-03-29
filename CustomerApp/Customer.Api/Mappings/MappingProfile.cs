@@ -12,6 +12,7 @@ namespace Customer.Api.Mappings
       CreateMap<CustomerDto, Contracts.Customer>();
       CreateMap<List<CustomerDto>, GetCustomersResponse>();
       CreateMap<CustomerTable, CustomerDto>();
+      CreateMap<CreateCustomerRequest, CustomerDto>().ForMember(x => x.Id, opt => opt.Ignore());
     }
   }
 }

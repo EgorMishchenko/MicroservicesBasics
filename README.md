@@ -12,5 +12,11 @@ Two microservices with basic functionality.
 #### Create imgage for Customer.Api service:
 
 Docker commands:
-docker build -t customerapi:latest .
-docker build -t orderapi:latest .
+For API:
+docker build -t customerapi:1.0 .
+docker build -t orderapi:1.0 .
+
+To deploy DB:
+docker build -t customerapidatabase:latest -f Dockerfile.Database .
+docker build -t orderapidatabase:latest -f Dockerfile.Database .
+

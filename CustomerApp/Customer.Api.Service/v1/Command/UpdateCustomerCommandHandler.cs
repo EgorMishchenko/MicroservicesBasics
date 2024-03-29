@@ -4,6 +4,7 @@ using Customer.Api.Data.Models;
 using Customer.Api.Dtos.v1;
 using Customer.Api.Data.Repository;
 using Customer.Api.Messaging.Send.Sender.v1;
+using Customer.Api.Domain.Entities;
 
 namespace Customer.Api.Service.v1.Command
 {
@@ -22,13 +23,28 @@ namespace Customer.Api.Service.v1.Command
 
     public async Task<CustomerDto> Handle(UpdateCustomerCommand request, CancellationToken cancellationToken)
     {
-      var dbCustomer = _mapper.Map<CustomerTable>(request.Customer);
+      var customerEntity = _mapper.Map<CustomerEntity>(request.Customer);
+
+      // todo: business manipulation
+
+      var updatedCustomerEntity = await UpdateDatabaseAsync(customerEntity);
+
+      UpdateInOtherServicesAsync(updatedCustomerEntity);
+
+      return _mapper.Map<CustomerDto>(updatedCustomerEntity);
+    }
+
+    private async Task<CustomerEntity> UpdateDatabaseAsync(CustomerEntity customerEntity)
+    {
+      var dbCustomer = _mapper.Map<CustomerTable>(customerEntity);
       var customer = await _customerRepository.UpdateAsync(dbCustomer);
+      return _mapper.Map<CustomerEntity>(customer);
+    }
 
-      var createdCustomer = _mapper.Map<CustomerDto>(customer);
+    private async Task UpdateInOtherServicesAsync(CustomerEntity customerEntity)
+    {
+      var createdCustomer = _mapper.Map<CustomerDto>(customerEntity);
       _customerUpdateSender.SendCustomer(createdCustomer);
-
-      return createdCustomer;
     }
   }
 }

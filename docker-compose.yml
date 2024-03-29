@@ -1,0 +1,29 @@
+services:
+  customerapi:
+    image: customerapi-image
+    build: 
+      context: \CustomerApp
+      dockerfile: \Dockerfile
+    container_name: customerapi-container
+    ports:
+      - 8000:80
+      - 8001:443
+    restart: on-failure        
+
+  sql-server-db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sql-server-db-container
+    ports:
+      - "1644:1433/tcp"
+    environment:
+      SA_PASSWORD: "PupoCheck@1644#"
+      ACCEPT_EULA: "Y"
+      
+  migrator: 
+    build: 
+      context: \CustomerApp
+      dockerfile: \Dockerfile.Database
+    container_name: customerapi-migrator-container
+    image: customerapi-migrator-image
+    depends_on:
+      - sql-server-db
