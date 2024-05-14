@@ -1,0 +1,21 @@
+services:  
+  sql-server-db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sql-server-db-container
+    ports:
+      - "1644:1433/tcp"
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "P+Lv27vGUH7e"
+      MSSQL_PID: "Developer"
+      MSSQL_AGENT_ENABLED: "true"
+      MSSQL_TCP_PORT: 1433
+
+  deploy-db:
+    build: 
+      context: \.
+      dockerfile: \Dockerfile
+    container_name: deploy-customer-db-container
+    image: deploy-customer-db-image
+    depends_on:
+      - sql-server-db

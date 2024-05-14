@@ -19,7 +19,8 @@ namespace Customer.Api.Service.v1.Query
     {
       var customersFromDb = _customerRepository.GetAll().ToList();
       var mappedCustomers = _mapper.Map<List<CustomerDto>>(customersFromDb);
-      return await Task.FromResult(mappedCustomers);
+
+      return mappedCustomers;
     }
   }
 }

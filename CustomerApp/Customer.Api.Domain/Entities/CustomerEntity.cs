@@ -1,10 +1,24 @@
-﻿namespace Customer.Api.Domain.Entities
+﻿using Customer.Api.Domain.Primitives;
+using Customer.Api.Domain.ValueObjects;
+
+namespace Customer.Api.Domain.Entities
 {
-  public class CustomerEntity
-  {
-    public Guid Id { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public DateTime? Birthday { get; set; }
-  }
+    public sealed class CustomerEntity : EntityBase
+    {
+        public CustomerEntity(
+            CustomerId id,
+            FirstName firstName,
+            LastName lastName,
+            DateOnly birthday) :
+            base(id.Value)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            Birthday = birthday;
+        }
+
+        public FirstName FirstName { get; init; }
+        public LastName LastName { get; init; }
+        public DateOnly? Birthday { get; init; }
+    }
 }
