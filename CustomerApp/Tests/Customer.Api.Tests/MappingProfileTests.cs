@@ -47,7 +47,8 @@ namespace Customer.Api.Tests
         new Guid("6746f3da-46ca-4822-a708-5c2798f8527e"),
         "TestFirstName",
         "TestLastName",
-        new DateOnly(2000, 01, 01));
+        new DateOnly(2000, 01, 01),
+        "email");
 
       var customerDto = _mapper.Map<CustomerDto>(customerTable);
 
@@ -66,13 +67,15 @@ namespace Customer.Api.Tests
         new Guid("6746f3da-46ca-4822-a708-5c2798f8527e"),
         "TestFirstName",
         "TestLastName",
-        new DateOnly(2000, 01, 01));
+        new DateOnly(2000, 01, 01),
+        "email");
 
       var customerTable2 = new CustomerTable(
         new Guid("9f76f54f-5704-4de1-bd3f-91ce68fb7b2c"),
         "TestFirstName2",
         "TestLastName2",
-        new DateOnly(2002, 02, 02));
+        new DateOnly(2002, 02, 02),
+        "email");
 
       var listCustomerTable = new List<CustomerTable>() { customerTable1, customerTable2 };
       var listCustomerDto = _mapper.Map<List<CustomerDto>>(listCustomerTable);

@@ -4,10 +4,12 @@ using Microsoft.Extensions.DependencyInjection;
 using MediatR;
 using System.Reflection;
 using Customer.Api.Service.v1.Command;
+using Customer.Api.Service.v1.Command.Create;
+using Customer.Api.Service.v1.Command.Update;
 
 namespace Customer.Api.Service
 {
-  public static class DependencyInjection
+    public static class DependencyInjection
   {
     public static IServiceCollection AddServiceDependencies(this IServiceCollection services)
     {

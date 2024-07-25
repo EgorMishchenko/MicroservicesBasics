@@ -15,7 +15,6 @@ namespace Customer.Api.Data.Migrations
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
-#pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
@@ -43,7 +42,6 @@ namespace Customer.Api.Data.Migrations
 
                     b.ToTable("Customer", (string)null);
                 });
-#pragma warning restore 612, 618
         }
     }
 }

@@ -9,13 +9,13 @@ namespace Customer.Api.Domain.ValueObjects
 
         private FirstName(string value)
         {
-            // exception is bad in ctor, so move it to method
+            // exception in ctor is bad, so move it to method
             Value = value;
         }
 
         public string Value { get; }
 
-        public FirstName Create(string firstName)
+        public static FirstName Create(string firstName)
         {
             // todo: replace with result object
             if (string.IsNullOrWhiteSpace(firstName))

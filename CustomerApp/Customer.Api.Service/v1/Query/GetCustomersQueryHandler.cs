@@ -5,20 +5,13 @@ using Customer.Api.Dtos.v1;
 
 namespace Customer.Api.Service.v1.Query
 {
-  public class GetCustomersQueryHandler : IRequestHandler<GetCustomersQuery, IEnumerable<CustomerDto>>
+  public class GetCustomersQueryHandler(ICustomerRepository customerRepository, IMapper mapper)
+      : IRequestHandler<GetCustomersQuery, IEnumerable<CustomerDto>>
   {
-    private readonly ICustomerRepository _customerRepository;
-    private readonly IMapper _mapper;
-    public GetCustomersQueryHandler(ICustomerRepository customerRepository, IMapper mapper)
+      public async Task<IEnumerable<CustomerDto>> Handle(GetCustomersQuery request, CancellationToken cancellationToken)
     {
-      _customerRepository = customerRepository;
-      _mapper = mapper;
-    }
-
-    public async Task<IEnumerable<CustomerDto>> Handle(GetCustomersQuery request, CancellationToken cancellationToken)
-    {
-      var customersFromDb = _customerRepository.GetAll().ToList();
-      var mappedCustomers = _mapper.Map<List<CustomerDto>>(customersFromDb);
+      var customersFromDb = customerRepository.GetAll().ToList();
+      var mappedCustomers = mapper.Map<List<CustomerDto>>(customersFromDb);
 
       return mappedCustomers;
     }

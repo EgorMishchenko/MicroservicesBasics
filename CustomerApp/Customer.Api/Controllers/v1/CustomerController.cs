@@ -6,25 +6,16 @@ using Customer.Api.Service.v1.Query;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
+using Customer.Api.Service.v1.Command.Create;
 
 namespace Customer.Api.Controllers.v1
 {
   [Produces("application/json")]
   [Route("v1/[controller]")]
   [ApiController]
-  public class CustomerController : ControllerBase
-  {
-    private readonly IMapper _mapper;
-    private readonly IMediator _mediator;
-    private readonly IValidator<CreateCustomerRequest> _validator;
-
-    public CustomerController(IMapper mapper, IMediator mediator, IValidator<CreateCustomerRequest> validator)
-    {
-      _mapper = mapper;
-      _mediator = mediator;
-      _validator = validator;
-    }
-
+  public class CustomerController(IMapper mapper, IMediator mediator, IValidator<CreateCustomerRequest> validator)
+      : ControllerBase
+  { 
     /// <summary>
     /// Action to see all existing customers.
     /// </summary>
@@ -38,9 +29,8 @@ namespace Customer.Api.Controllers.v1
     {
       try
       {
-        var customers = await _mediator.Send(new GetCustomersQuery());
-        var customerContracts = _mapper.Map<List<Contracts.Customer>>(customers);
-        return new GetCustomersResponse(customerContracts);
+        var customers = await mediator.Send(new GetCustomersQuery());
+        return mapper.Map<GetCustomersResponse>(customers);
       }
       catch (Exception ex)
       {
@@ -64,12 +54,12 @@ namespace Customer.Api.Controllers.v1
     {
       try
       {
-        await _validator.ValidateAsync(request);
+        await validator.ValidateAsync(request);
 
-        var customerDto = _mapper.Map<CustomerDto>(request);
-        var createdCustomer = await _mediator.Send(new CreateCustomerCommand(customerDto));
+        var customerDto = mapper.Map<CustomerDto>(request);
+        var createdCustomer = await mediator.Send(new CreateCustomerCommand(customerDto));
 
-        return _mapper.Map<CreateCustomerResponse>(createdCustomer);
+        return mapper.Map<CreateCustomerResponse>(createdCustomer);
       }
       catch (Exception ex)
       {

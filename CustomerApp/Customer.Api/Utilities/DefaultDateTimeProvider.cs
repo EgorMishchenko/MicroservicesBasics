@@ -1,6 +1,6 @@
 ﻿namespace Customer.Api.Utilities
 {
-    public class DateTimeProvider : IDateTimeProvider
+    public class DefaultDateTimeProvider : IDateTimeProvider
     {
         public DateOnly GetCurrentDate()
         {

@@ -5,10 +5,11 @@ using Customer.Api.Dtos.v1;
 using Customer.Api.Data.Repository;
 using Customer.Api.Messaging.Send.Sender.v1;
 using Customer.Api.Domain.Entities;
+using Customer.Api.Service.v1.Command.Update;
 
 namespace Customer.Api.Service.v1.Command
 {
-  public class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerCommand, CustomerDto>
+    public class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerCommand, CustomerDto>
   {
     private readonly ICustomerRepository _customerRepository;
     private readonly ICustomerUpdateSender _customerUpdateSender;
@@ -29,7 +30,7 @@ namespace Customer.Api.Service.v1.Command
 
       var updatedCustomerEntity = await UpdateDatabaseAsync(customerEntity);
 
-      UpdateInOtherServicesAsync(updatedCustomerEntity);
+      await UpdateInOtherServicesAsync(updatedCustomerEntity);
 
       return _mapper.Map<CustomerDto>(updatedCustomerEntity);
     }
