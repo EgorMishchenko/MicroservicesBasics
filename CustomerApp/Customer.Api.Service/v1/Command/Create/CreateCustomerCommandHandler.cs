@@ -37,7 +37,7 @@ namespace Customer.Api.Service.v1.Command.Create
             }
             
             CustomerTable? customerForDb = mapper.Map<CustomerTable>(customerEntity);
-            CustomerTable? customerFromDb = await customerRepository.AddAsync(customerForDb);
+            CustomerTable? customerFromDb = await customerRepository.AddCustomerAsync(customerForDb);
 
             return mapper.Map<CustomerDto>(customerFromDb);
         }

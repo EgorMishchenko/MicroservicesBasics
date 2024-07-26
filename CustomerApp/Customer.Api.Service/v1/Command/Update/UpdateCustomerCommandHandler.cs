@@ -38,7 +38,7 @@ namespace Customer.Api.Service.v1.Command
     private async Task<CustomerEntity> UpdateDatabaseAsync(CustomerEntity customerEntity)
     {
       var dbCustomer = _mapper.Map<CustomerTable>(customerEntity);
-      var customer = await _customerRepository.UpdateAsync(dbCustomer);
+      var customer = await _customerRepository.UpdateCustomerAsync(dbCustomer);
       return _mapper.Map<CustomerEntity>(customer);
     }
 

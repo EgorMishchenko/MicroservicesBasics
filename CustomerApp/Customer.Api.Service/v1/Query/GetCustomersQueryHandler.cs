@@ -10,7 +10,7 @@ namespace Customer.Api.Service.v1.Query
   {
       public async Task<IEnumerable<CustomerDto>> Handle(GetCustomersQuery request, CancellationToken cancellationToken)
     {
-      var customersFromDb = customerRepository.GetAll().ToList();
+      var customersFromDb = customerRepository.GetAllCustomers().ToList();
       var mappedCustomers = mapper.Map<List<CustomerDto>>(customersFromDb);
 
       return mappedCustomers;

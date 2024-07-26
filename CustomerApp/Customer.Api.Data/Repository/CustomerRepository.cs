@@ -6,6 +6,18 @@ namespace Customer.Api.Data.Repository
 {
   public class CustomerRepository(CustomerContext customerContext) : ICustomerRepository
   {
+    public IEnumerable<CustomerTable> GetAllCustomers()
+    {
+      try
+      {
+        return customerContext.Set<CustomerTable>();
+      }
+      catch (Exception ex)
+      {
+        throw new Exception($"Couldn't retrieve entities: {ex.Message}");
+      }
+    }
+
     public async Task<CustomerTable> GetCustomerByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         var customer = await customerContext.Customer.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
@@ -39,19 +51,6 @@ namespace Customer.Api.Data.Repository
       catch (Exception ex)
       {
         throw new Exception($"{nameof(customerTable)} could not be saved: {ex.Message}");
-      }
-    }
-    
-
-    public IEnumerable<CustomerTable> GetAllCustomers()
-    {
-      try
-      {
-        return customerContext.Set<CustomerTable>();
-      }
-      catch (Exception ex)
-      {
-        throw new Exception($"Couldn't retrieve entities: {ex.Message}");
       }
     }
 

@@ -27,7 +27,8 @@ namespace Customer.Api.Domain.Tests.BusinessValidation
                 FirstName.Create("firstName"),
                 new LastName("LastName"), 
                 null, 
-                null);
+                null,
+                new List<AddressEntity>());
 
             _customerValidator = new CustomerValidator(_repository.Object);
             var validationResult = await _customerValidator.ValidateAsync(customerEntity);
@@ -45,7 +46,8 @@ namespace Customer.Api.Domain.Tests.BusinessValidation
                 FirstName.Create("firstName"),
                 new LastName("LastName"),
                 null,
-                email);
+                email,
+                new List<AddressEntity>());
 
             _repository.Setup(x => x.GetCustomersByEmailAsync(email, It.IsAny<CancellationToken>())).ReturnsAsync(new List<CustomerTable>());
             _customerValidator = new CustomerValidator(_repository.Object);
@@ -67,11 +69,12 @@ namespace Customer.Api.Domain.Tests.BusinessValidation
                 FirstName.Create("firstName"),
                 new LastName("LastName"),
                 null,
-                uniqEmail);
+                uniqEmail,
+                new List<AddressEntity>());
 
             var listWithEmails = new List<CustomerTable>()
             {
-                new (Guid.NewGuid(), "a2", "b2", null, uniqEmail)
+                new (Guid.NewGuid(), "a2", "b2", null, uniqEmail, new List<AddressTable>())
             };
 
             _repository.Setup(x => x.GetCustomersByEmailAsync(uniqEmail, It.IsAny<CancellationToken>())).ReturnsAsync(listWithEmails);
@@ -97,7 +100,8 @@ namespace Customer.Api.Domain.Tests.BusinessValidation
                 FirstName.Create("firstName"),
                 new LastName("LastName"),
                 null,
-                whitespaceEmail);
+                whitespaceEmail,
+                new List<AddressEntity>());
 
             // run
             var validationResult = await _customerValidator.ValidateAsync(customerEntity);

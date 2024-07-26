@@ -16,7 +16,6 @@ namespace Customer.Api.Data
         options.UseSqlServer(sqlConnStr);
       });
 
-      services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
       services.AddTransient<ICustomerRepository, CustomerRepository>();
 
       return services;

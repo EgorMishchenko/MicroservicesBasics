@@ -48,7 +48,8 @@ namespace Customer.Api.Tests
         "TestFirstName",
         "TestLastName",
         new DateOnly(2000, 01, 01),
-        "email");
+        "email",
+        new List<AddressTable>());
 
       var customerDto = _mapper.Map<CustomerDto>(customerTable);
 
@@ -68,14 +69,16 @@ namespace Customer.Api.Tests
         "TestFirstName",
         "TestLastName",
         new DateOnly(2000, 01, 01),
-        "email");
+        "email",
+        new List<AddressTable>());
 
       var customerTable2 = new CustomerTable(
         new Guid("9f76f54f-5704-4de1-bd3f-91ce68fb7b2c"),
         "TestFirstName2",
         "TestLastName2",
         new DateOnly(2002, 02, 02),
-        "email");
+        "email",
+        new List<AddressTable>());
 
       var listCustomerTable = new List<CustomerTable>() { customerTable1, customerTable2 };
       var listCustomerDto = _mapper.Map<List<CustomerDto>>(listCustomerTable);
