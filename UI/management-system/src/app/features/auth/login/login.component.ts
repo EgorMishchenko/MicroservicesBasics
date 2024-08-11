@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginRequest } from '../models/login-request';
+import { AuthService } from '../services/auth.service';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +13,11 @@ export class LoginComponent implements OnInit {
   
   model: LoginRequest;
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private cookieService: CookieService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }

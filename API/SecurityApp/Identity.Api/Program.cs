@@ -1,7 +1,7 @@
-
-using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
+using Identity.Api.Database;
+using Identity.Api.Extensions;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Identity.Api
 {
@@ -10,11 +10,20 @@ namespace Identity.Api
     public static void Main(string[] args)
     {
       var builder = WebApplication.CreateBuilder(args);
-      var config = builder.Configuration;
 
       builder.Services.AddControllers();
       builder.Services.AddEndpointsApiExplorer();
       builder.Services.AddSwaggerGen();
+
+      builder.Services.AddAuthorization();
+      builder.Services.AddAuthentication()
+        .AddCookie(IdentityConstants.ApplicationScheme);
+
+      builder.Services.AddIdentityCore<IdentityUser>()
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddApiEndpoints();
+
+      builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
 
       var app = builder.Build();
 
@@ -22,9 +31,12 @@ namespace Identity.Api
       {
         app.UseSwagger();
         app.UseSwaggerUI();
-      }
 
+        app.ApplyMigrations();
+      }
+      
       app.UseHttpsRedirection();
+      app.MapIdentityApi<IdentityUser>();
 
       app.MapControllers();
 
