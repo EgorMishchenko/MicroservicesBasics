@@ -16,8 +16,9 @@ namespace Identity.Api
       builder.Services.AddSwaggerGen();
 
       builder.Services.AddAuthorization();
+
       builder.Services.AddAuthentication()
-        .AddCookie(IdentityConstants.ApplicationScheme);
+        .AddBearerToken(IdentityConstants.BearerScheme);
 
       builder.Services.AddIdentityCore<IdentityUser>()
         .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -31,10 +32,13 @@ namespace Identity.Api
       {
         app.UseSwagger();
         app.UseSwaggerUI();
+      }
 
+      if (args.Contains("apply-migrations"))
+      {
         app.ApplyMigrations();
       }
-      
+
       app.UseHttpsRedirection();
       app.MapIdentityApi<IdentityUser>();
 

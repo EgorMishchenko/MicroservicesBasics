@@ -4,17 +4,16 @@ import { LoginRequest } from '../models/login-request';
 import { LoginResponse } from '../models/login-response.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { CookieService } from 'ngx-cookie-service';
 import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 }) 
-export class AuthService {
 
+export class AuthService {
   $user = new BehaviorSubject<User | undefined>(undefined);
   
-  constructor(private http: HttpClient, private cookieService: CookieService) { }
+  constructor(private http: HttpClient) { }
 
   login(request: LoginRequest): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(

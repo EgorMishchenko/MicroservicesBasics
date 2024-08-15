@@ -8,7 +8,7 @@ import { CustomerListComponent } from './features/customers/customer-list/custom
 import { AddCustomerComponent } from './features/customers/customer/add-customer/add-customer.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { LoginComponent } from './features/auth/login/login/login.component';
+import { LoginComponent } from './features/auth/login/login.component';
 
 @NgModule({
   declarations: [

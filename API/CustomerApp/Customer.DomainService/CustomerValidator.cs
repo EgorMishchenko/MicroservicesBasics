@@ -1,8 +1,12 @@
-﻿using Customer.Api.Data.Repository;
-using Customer.Domain.Entities;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Customer.Api.Data.Repository;
 using FluentValidation;
 
-namespace Customer.Domain.BusinessValidation
+namespace Customer.DomainService
 {
   public sealed class CustomerValidator : AbstractValidator<CustomerEntity>
   {
@@ -13,18 +17,18 @@ namespace Customer.Domain.BusinessValidation
           {
             if (email is null)
             {
-                return;
+              return;
             }
             if (email.Trim() == string.Empty)
             {
-                context.AddFailure("Email empty or white space.");
+              context.AddFailure("Email empty or white space.");
             }
             else
             {
-                if (await DoesEmailAlreadyExist(email, customerRepository, ct))
-                {
-                    context.AddFailure("Email already exists.");
-                }
+              if (await DoesEmailAlreadyExist(email, customerRepository, ct))
+              {
+                context.AddFailure("Email already exists.");
+              }
             }
           }
         );

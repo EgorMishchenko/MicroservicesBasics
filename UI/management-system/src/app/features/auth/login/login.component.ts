@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginRequest } from '../models/login-request';
 import { AuthService } from '../services/auth.service';
-import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +14,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private cookieService: CookieService,
     private router: Router
   ) { }
 
@@ -26,16 +24,6 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.model).subscribe({
       next: (response) => {
         console.log(response);
-
-        this.cookieService.set(
-          'Authorization',
-          'Bearer ' + response.token,
-          undefined,
-          '/',
-          undefined,
-          true,
-          'Strict'
-        );
 
         this.authService.setUser({
           email: response.email,
