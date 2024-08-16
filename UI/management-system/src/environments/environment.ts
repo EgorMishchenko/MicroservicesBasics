@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   customerApiBaseUrl: 'https://localhost:44332',
   orderApiBaseUrl: 'https://localhost:44333',
-  authApiBaseUrl: 'https://localhost:44334',
+  authApiBaseUrl: 'https://localhost:7214',
 };
 
 /*
